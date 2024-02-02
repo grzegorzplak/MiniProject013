@@ -1,0 +1,47 @@
+﻿@model Car
+
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="Id" hidden />
+    <input asp-for="CarImage" hidden />
+    <div class="boreder p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Update Car</h2>
+        </div>
+        <div class="mb-3">
+            <span asp-validation-summary="ModelOnly" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="BrandName"></label>
+            <input asp-for="BrandName" type="text" class="form-control" />
+            <span asp-validation-for="BrandName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ModelName"></label>
+            <input asp-for="ModelName" type="text" class="form-control" />
+            <span asp-validation-for="ModelName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CarImage"></label>
+            <input asp-for="CarImage" type="file" name="file" class="form-control" />
+            <span asp-validation-for="CarImage" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Previous Car Image</label>
+            <img src="@Model.CarImage" />
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary form-control">Update</button>
+            </div>
+            <div class="col-6">
+                <a asp-action="Index" asp-controller="Cars" class="btn btn-secondary form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

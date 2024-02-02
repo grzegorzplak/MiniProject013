@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Car>
+@{
+    int i = 1;
+}
+
+<h1>Cars</h1>
+
+<a class="btn btn-success  mb-3" asp-action="Create">
+    <i class="bi bi-bag-plus-fill"></i> Create New Car
+</a>
+
+@if(Model != null)
+{
+    <div class="container">
+        <div class="row row-cols-3">
+        @foreach(var item in Model)
+        {
+            <div class="card pt-3 m-2 col" style="width: 330px;">
+            @if (item.CarImage != null && item.CarImage != "")
+            {
+                <img src="@(item.CarImage)" class="card-img-top" alt="..." style="width: 300px; height: 200px;">
+            }
+            else
+            {
+                <img src="~/images/cars/no-photo.png" class="card-img-top" alt="..." style="width: 300px; height: 200px;">
+            }
+                <div class="card-body">
+                    <h5 class="card-title text-center">@item.BrandName</h5>
+                    <h6 class="card-subtitle mb-2 text-muted text-center">@item.ModelName</h6>
+                    <a asp-controller="Cars" asp-action="Update" asp-route-id="@(item.Id)" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Cars" asp-action="Delete" asp-route-id="@(item.Id)" class="btn btn-primary">Delete</a>  
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        There is no data
+    </div>
+}
